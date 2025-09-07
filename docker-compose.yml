@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    env_file:
+      - ./.env
+    volumes:
+      - mysql_volume:/var/lib/mysql
+    ports:
+      - '3307:3306'
+    restart: unless-stopped
+  
+  backend:
+    build: .
+    image: task_management
+    container_name: task_management
+    volumes:
+      - media_volume:/src/app/media
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    restart: unless-stopped
+
+  nginx:
+    build: ./nginx
+    image: nginx
+    container_name: nginx
+    volumes:
+      - media_volume:/src/app/media
+    ports:
+      - '8081:80'
+    depends_on:
+      - backend
+    restart: unless-stopped 
+
+volumes:
+  mysql_volume:
+  media_volume:
