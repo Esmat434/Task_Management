@@ -17,6 +17,7 @@ services:
     image: task_management
     container_name: task_management
     volumes:
+      - .:/src/app/
       - media_volume:/src/app/media
     ports:
       - '8000:8000'
@@ -31,7 +32,8 @@ services:
     image: nginx
     container_name: nginx
     volumes:
-      - media_volume:/src/app/media
+      - .:/src/app
+      - media_volume:/app/media
     ports:
       - '8081:80'
     depends_on:
