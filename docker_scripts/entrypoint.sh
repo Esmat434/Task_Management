@@ -9,7 +9,7 @@ python manage.py migrate --noinput
 echo "🧱 Collecting static files..."
 python manage.py collectstatic --noinput
 
-echo "👤 Creating superuser if it doesn't exist..."
-python manage.py create_custom_superuser
+# echo "👤 Creating superuser if it doesn't exist..."
+# python manage.py create_custom_superuser
 
 exec "$@"
