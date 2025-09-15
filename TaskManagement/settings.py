@@ -140,6 +140,63 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Logging Settings
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file_info': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/django.log',
+            'formatter': 'verbose',
+        },
+        'file_warning' : {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/django.warning',
+            'formatter': 'verbose'
+        },
+        'file_debug' : {    
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/django.debug',
+            'formatter': 'verbose'
+        },
+        'file_error' : {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/django.error',
+            'formatter': 'verbose'
+        },
+        'file_critical': {
+            'level': 'CRITICAL',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/django.critical',
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'root': {
+        'handlers': ['file_warning','file_debug','file_info','file_error','file_critical', 'console'],
+        'level': 'DEBUG',
+    },
+}
+
 # Django-Rest-Framework Settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
