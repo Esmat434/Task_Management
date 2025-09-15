@@ -2,7 +2,7 @@ import uuid
 from django.utils import timezone
 from rest_framework import serializers
 from .models import (
-    CustomUser,PasswordResetToken
+    CustomUser
 )
 
 class RegisterSerializer(serializers.ModelSerializer):
