@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
+from drf_spectacular.utils import extend_schema
 
 from .models import (
     PasswordResetToken
@@ -60,7 +61,21 @@ class ChangePasswordView(APIView):
 
 class PasswordResetRequestView(APIView):
     permission_classes = [IsNotAuthenticated]
-
+    
+    @extend_schema(
+        summary="Password Reset Request",
+        description=(
+            "Creates a password reset token for the user by providing their email. "
+            "Important: The token is returned directly in the API response. "
+            "The user must use this token when calling PasswordResetConfirm. "
+            "The token is not sent via email or any other method."
+        ),
+        request=PasswordResetrequestSerializer,
+        responses={
+            201: {"access": "token-uuid"},
+            400: {"detail": "Validation errors"}
+        }
+    )
     def post(self,request):
         serializer = PasswordResetrequestSerializer(data=request.data)
         if serializer.is_valid():
@@ -78,6 +93,19 @@ class PasswordResetRequestView(APIView):
 
 class PasswordResetConfirmView(APIView):
     permission_classes = [IsNotAuthenticated]
+    
+    @extend_schema(
+        summary="Password Reset Confirm",
+        description=(
+            "Resets the user's password using the token generated in PasswordResetRequest. "
+            "Provide the reset token and the new password in the request."
+        ),
+        request=PasswordResetConfirmSerializer,
+        responses={
+            200: {"detail": "Your password has been successfully reset."},
+            400: {"detail": "Validation errors"}
+        }
+    )
     def post(self,request,uuid):
         token=get_object_or_404(PasswordResetToken, token=uuid)
         serializer=PasswordResetConfirmSerializer(
