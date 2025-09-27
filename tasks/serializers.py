@@ -8,9 +8,10 @@ class CategoryCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = (
-            'user','title','created_at'
+            'id','user','title','created_at'
         )
         extra_kwargs = {
+            'id':{'read_only':True},
             'user':{'read_only':True},
             'title':{'required':True},
             'created_at':{'read_only':True}
@@ -53,9 +54,10 @@ class BoardCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = (
-            'user','title','category','created_at'
+            'id','user','title','category','created_at'
         )
         extra_kwargs = {
+            'id':{'read_only':True},
             'user':{'read_only':True},
             'title':{'required':True},
             'category':{'required':False},
@@ -100,9 +102,10 @@ class TaskCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = (
-            'user','board','title','description','status','published_at','created_at'
+            'id','user','board','title','description','status','published_at','created_at'
         )
         extra_kwargs = {
+            'id':{'read_only':True},
             'user':{'read_only':True},
             'board':{'required':True},
             'title':{'required':True},
