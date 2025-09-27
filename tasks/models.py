@@ -19,7 +19,7 @@ class Category(models.Model):
 class Board(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='boards', verbose_name='User')
     title = models.CharField(max_length=155, verbose_name='Title')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='boards', null=True, blank=True, verbose_name='Category')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='boards', null=True, blank=True, verbose_name='Category')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created Date')
 
     def __str__(self):
