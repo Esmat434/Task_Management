@@ -13,11 +13,12 @@ from .serializers import (
     TaskCreateSerializer,TaskUpdateSerializer
 )
 
-class CategoryCreateListView(IsAuthenticated,APIView):
+class CategoryCreateListView(APIView):
     """
     Retrieve or create categories for the authenticated user.
     """
 
+    permission_classes = [IsAuthenticated]
     def get(self,request):
         """
         Retrieve all categories owned by the authenticated user.
@@ -42,11 +43,12 @@ class CategoryCreateListView(IsAuthenticated,APIView):
             return Response(serilalizer.data, status=status.HTTP_201_CREATED)
         return Response(serilalizer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class CategoryDetailUpdateDestroyView(IsAuthenticated,APIView):
+class CategoryDetailUpdateDestroyView(APIView):
     """
     Retrieve, update, or delete a specific category.
     """
 
+    permission_classes = [IsAuthenticated]
     def get(self,request,pk):
         """
         Retrieve a category by its ID for the authenticated user.
@@ -77,11 +79,12 @@ class CategoryDetailUpdateDestroyView(IsAuthenticated,APIView):
         category.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class BoardCreateListView(IsAuthenticated,APIView):
+class BoardCreateListView(APIView):
     """
     Retrieve or create boards for the authenticated user.
     """
 
+    permission_classes = [IsAuthenticated]
     def get(self,request):
         """
         Retrieve all boards created by the authenticated user.
@@ -104,11 +107,12 @@ class BoardCreateListView(IsAuthenticated,APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class BoardDetailUpdateDestroyView(IsAuthenticated,APIView):
+class BoardDetailUpdateDestroyView(APIView):
     """
     Retrieve, update, or delete a specific board.
     """
 
+    permission_classes = [IsAuthenticated]
     def get(self,request,pk):
         """
         Retrieve a board by its ID for the authenticated user.
@@ -140,11 +144,12 @@ class BoardDetailUpdateDestroyView(IsAuthenticated,APIView):
         board.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class TaskCreateListView(IsAuthenticated,APIView):
+class TaskCreateListView(APIView):
     """
     Retrieve or create active (enabled) tasks for the authenticated user.
     """
 
+    permission_classes = [IsAuthenticated]
     def get(self,request):
         """
         Retrieve all active tasks (status = Enable).
@@ -169,11 +174,12 @@ class TaskCreateListView(IsAuthenticated,APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class TaskDisableListView(IsAuthenticated,APIView):
+class TaskDisableListView(APIView):
     """
     Retrieve all disabled tasks for the authenticated user.
     """
 
+    permission_classes = [IsAuthenticated]
     def get(self,request):
         """
         Retrieve all tasks where status = Disable.
@@ -182,11 +188,12 @@ class TaskDisableListView(IsAuthenticated,APIView):
         serializer = TaskCreateSerializer(tasks, many=True, user=request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-class TaskDisableDetailView(IsAuthenticated,APIView):
+class TaskDisableDetailView(APIView):
     """
     Retrieve details of a disabled task by its ID.
     """
 
+    permission_classes = [IsAuthenticated]
     def get(self,request,pk):
         """
         Retrieve a disabled task by its ID.
@@ -195,11 +202,12 @@ class TaskDisableDetailView(IsAuthenticated,APIView):
         serializer = TaskCreateSerializer(task, user=request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-class TaskDetailUpdateDestroyView(IsAuthenticated,APIView):
+class TaskDetailUpdateDestroyView(APIView):
     """
     Retrieve, update, or delete a specific active task.
     """
 
+    permission_classes = [IsAuthenticated]
     def get(self,request,pk):
         """
         Retrieve a task by its ID (status = Enable).
