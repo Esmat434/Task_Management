@@ -40,7 +40,7 @@ The project also includes API documentation, logging, rate limiting, and testing
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/task_management.git
+   git clone https://github.com/Esmat434/Task_Management.git
    cd TaskManagement
    ```
 
@@ -64,13 +64,13 @@ The project also includes API documentation, logging, rate limiting, and testing
 Once the server is running, the API documentation is available at:
 
 ```
-http://localhost:8000/api/schema/swagger-ui/
+http://localhost:8081/api/docs/swagger/
 ```
 
 or
 
 ```
-http://localhost:8000/api/schema/redoc/
+http://localhost:80801/api/docs/redoc/
 ```
 
 ## License
