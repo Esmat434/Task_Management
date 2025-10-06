@@ -44,19 +44,14 @@ The project also includes API documentation, logging, rate limiting, and testing
    cd TaskManagement
    ```
 
-2. Build and start the Docker containers:
+3. Copy .env.example to .env file:
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Build and start the Docker containers:
    ```bash
    docker-compose up --build
-   ```
-
-3. Apply migrations:
-   ```bash
-   docker exec -it task_management python manage.py migrate
-   ```
-
-4. Create a superuser (optional):
-   ```bash
-   docker exec -it task_management python manage.py createsuperuser
    ```
 
 ## API Documentation
