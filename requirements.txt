@@ -7,3 +7,4 @@ pillow==11.3.0
 drf-spectacular==0.28.0
 drf-spectacular-sidecar==2025.9.1
 locust==2.41.3
+gunicorn==23.0.0
