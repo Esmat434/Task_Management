@@ -56,10 +56,15 @@ The project also includes API documentation, logging, rate limiting, and testing
 
 4. Build and start the Docker containers:
    ```bash
-   docker-compose up -d --build
+   docker-compose build 
    ```
 
-5. Create a superuser (optional):
+5. Build and start the Docker containers:
+   ```bash
+   docker-compose up -d
+   ```
+
+6. Create a superuser (optional):
  ```bash
  docker exec -it task_management python manage.py createsuperuser
  ```
