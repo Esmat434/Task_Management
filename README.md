@@ -54,12 +54,12 @@ The project also includes API documentation, logging, rate limiting, and testing
    cp .env.example .env
    ```
 
-4. Build and start the Docker containers:
+4. Build Docker containers:
    ```bash
    docker-compose build 
    ```
 
-5. Build and start the Docker containers:
+5. start the Docker containers:
    ```bash
    docker-compose up -d
    ```
