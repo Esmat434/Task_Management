@@ -41,7 +41,7 @@ The project also includes API documentation, logging, rate limiting, and testing
 1. Clone the repository:
    ```bash
    git clone https://github.com/Esmat434/Task_Management.git
-   cd TaskManagement
+   cd Task_Management
    ```
 
 2. Create log file:
