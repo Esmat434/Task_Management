@@ -4,6 +4,10 @@ This project is a **Task Management System** built with **Django Rest Framework 
 It provides user authentication with JWT and allows users to create and manage categories, boards, and tasks.  
 The project also includes API documentation, logging, rate limiting, and testing.
 
+<div align="center">
+  <img src="./docs/swagger.png" alt="Database Diagram" width="80%" />
+</div>
+
 ## Features
 
 - **User Authentication**
